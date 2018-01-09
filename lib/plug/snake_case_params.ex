@@ -15,6 +15,13 @@ defmodule ProperCase.Plug.SnakeCaseParams do
 
   def init(opts), do: opts
 
+  def call(%{params: %{"file" => upload, "params" => params}} = conn, _opts) do
+    params = Poison.decode!(params, [])
+              |> ProperCase.to_snake_case()
+              |> Poison.encode!([])
+    %{conn | params: %{"file" => upload, "params" => params}}
+  end
+
   def call(%{params: params} = conn, _opts) do
     %{conn | params: ProperCase.to_snake_case(params)}
   end
