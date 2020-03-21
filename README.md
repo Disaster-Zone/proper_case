@@ -17,7 +17,7 @@ Converts a string to camel case
 `ProperCase.camel_case/1`
 
 ## Usage
-
+proper
 
 ### Example: `ProperCase.to_snake_case`
 ```elixir
